@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import MenuBarAdmin from './shared/components/MenuBarAdmin'
 import Test from './features/Dashboard/components/MenuAdmin'
 import MenuAdmin from './features/content/components/MenuAdmin'
-import ContentAdmin from './features/content/components/ContentAdmin'
+import MenuContetnAdmin from './features/content/components/MenuContentAdmin'
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Test/>}/>
         <Route path="/Content" element={<MenuAdmin/>}/>
-        <Route path="/Content-admin" element={<ContentAdmin/>}/>
+        <Route path="/Content-admin" element={<MenuContetnAdmin/>}/>
       </Routes>
     </BrowserRouter>
     </>
