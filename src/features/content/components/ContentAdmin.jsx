@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 function ContentAdmin({nav,onSave}) {
     
@@ -9,8 +10,16 @@ function ContentAdmin({nav,onSave}) {
     }
 
     const handlesubmitcontent = (data) => {
-        onSave(data)
-        nav("/Content")
+        if(data.Content != ""){
+            onSave(data)
+            nav("/Content")
+        } else (
+            Swal.fire({
+                title: "Good job!",
+                text: "You clicked the button!",
+                icon: "success"
+            })
+        )
     }
 
     return(
