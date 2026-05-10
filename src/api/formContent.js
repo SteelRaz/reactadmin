@@ -9,6 +9,10 @@ const contentApi = {
     addContent(data){
         return axiosClient.post("/AddContent", data)
     },
+
+    editContent(id){
+        return axiosClient.get(`/Content-admin-Edit/${id}`)
+    },
 };
 
 export default contentApi;

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContents, GetContent } from './useThunk';
+import { addContents, EditContent, GetContent } from './useThunk';
 // import { getUsers } from './todoThunk';
 
 const contentSlice = createSlice({
@@ -7,6 +7,7 @@ const contentSlice = createSlice({
     initialState: {
         content: [],
         addContent: {},
+        editContent: {},
     },
     reducers: {
         addContent(state, action) {
@@ -56,6 +57,7 @@ const contentSlice = createSlice({
                 state.errormessage = action.payload
             })
 
+
             .addCase(addContents.pending, state => {
                 state.status = "loading";
                 state.errormessage = null;
@@ -70,6 +72,20 @@ const contentSlice = createSlice({
                 state.addContent = action.payload;
             })
             .addCase(addContents.rejected, (state, action) => {
+                state.status = "error";
+                state.errormessage = action.payload
+            })
+
+
+            .addCase(EditContent.pending, state => {
+                state.status = "loading";
+                state.errormessage = null;
+            })
+            .addCase(EditContent.fulfilled, (state, action) => {
+                state.status = "success";
+                state.editContent = action.payload
+            })
+            .addCase(EditContent.rejected, (state, action) => {
                 state.status = "error";
                 state.errormessage = action.payload
             })

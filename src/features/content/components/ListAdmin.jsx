@@ -1,31 +1,46 @@
 import Box from '@mui/material/Box';
-import { DataGrid, GridActionsCell, GridActionsCellItem } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCell, GridActionsCellItem, GridDeleteIcon, GridEditDateCell } from "@mui/x-data-grid";
+import { createContext, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
 
 
-function ActionsCell(props) {
-  const { deleteUser, toggleAdmin, duplicateUser } =
-    React.useContext(ActionHandlersContext);
-
-  return (
-    <GridActionsCell {...props}>
-      <GridActionsCellItem
-        icon={<DeleteIcon />}
-        label="Delete"
-        onClick={() => deleteUser(props.id)}
-      />
-    </GridActionsCell>
-  );
-}
-
-function ListAdmin({nav, data}) {
+function ListAdmin({nav, data, edit}) {
 
     console.log("Data content",data)
 
     const Addnav = () => {
         nav("/Content-admin")
     }
+
+    const Editnav = (row) => {
+        edit(row)
+    }
     
+      const columns = [
+            { field: 'Id', headerName: 'No', width: 90 },
+            { field: 'Contet', headerName: 'Nama Content', width: 200 },
+            { field: 'Description', headerName: 'Deskripsi', width: 200 },
+            {
+            field: 'actions',
+            type: 'actions',
+            headerName: 'Action',
+            width: 200,
+            getActions: (params) => [
+                <GridActionsCellItem
+                icon={<EditIcon />}
+                label="Edit"
+                onClick={() => Editnav(params.row)}
+                />,
+                <GridActionsCellItem
+                icon={<GridDeleteIcon />}
+                label="Delete"
+                onClick={() => deleteUser(params.id)}
+                />
+            ],
+        },
+    ];
+
     return(
         <>
             <div class="flex justify-end mr-5">
@@ -48,13 +63,7 @@ function ListAdmin({nav, data}) {
                     <DataGrid
                         rows={data}
                         getRowId={(row) => row.Id}
-                        columns={[
-                            { field: 'Id', headerName: 'No' },
-                            { field: 'Contet', headerName:'Nama Content',width: 200 }, 
-                            { field: 'Description',headerName:'Deskripsi',width: 200 },
-                            { field: 'Edit',width: 200 },
-                            { field: 'Delete',width: 200 },
-                        ]}
+                        columns={columns}
                     >
                         
                     </DataGrid>

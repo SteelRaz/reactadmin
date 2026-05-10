@@ -1,16 +1,18 @@
 import { useForm } from "react-hook-form";
 
-function ContentAdmin({nav,onSave}) {
+function ContentEdit({nav,onSave,editData}) {
     
     const { register, handleSubmit } = useForm();
-
+    console.log("DataEdit",editData)
+    
     const BackContent = () => {
+        console.log("BackContent")
         nav("/Content")
     }
 
     const handlesubmitcontent = (data) => {
+        console.log("handlesubmitcontent")
         onSave(data)
-        nav("/Content")
     }
 
     return(
@@ -106,7 +108,7 @@ function ContentAdmin({nav,onSave}) {
                         py-2
                         text-white"
                     >
-                        Save
+                        Edit
                     </button>
                 </div>
 
@@ -117,4 +119,4 @@ function ContentAdmin({nav,onSave}) {
     )
 }
 
-export default ContentAdmin;
+export default ContentEdit;

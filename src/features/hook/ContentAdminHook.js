@@ -1,17 +1,17 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addContents, GetContent } from "../../reducer/useThunk";
+import { addContents, EditContent, GetContent } from "../../reducer/useThunk";
 
 function ContentAdminHook() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const content = useSelector(state => state.content.content)
+    const dataedit = useSelector(state => state.content.editContent)
 
     useEffect(() => {
         dispatch(GetContent());
-    }, [dispatch]);
+    }, []);
 
     const handlesavecontent = (data) => {
         if (data.id) {
@@ -23,9 +23,14 @@ function ContentAdminHook() {
         }
     }
 
+    const EditData = (row) => {
+        navigate(`/Content-admin-Edit/${row.Id}`)
+        dispatch(EditContent(row.Id))
+    }
+
     return{
-        content,
-        navigate,handlesavecontent
+        content,dataedit,
+        navigate,handlesavecontent,EditData
     }
 }
 
