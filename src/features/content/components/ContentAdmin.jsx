@@ -10,14 +10,30 @@ function ContentAdmin({nav,onSave}) {
     }
 
     const handlesubmitcontent = (data) => {
-        if(data.Content != ""){
-            onSave(data)
-            nav("/Content")
+        if(data.Content != "" && data.Description != "" && data.FotoContent != ""){
+            Swal.fire({
+                title: "Apakah Anda Yakin Ingin Menyimpan Data ?",
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                icon: "question"
+            }).then((result)=> {
+                if (result.isConfirmed){
+                    Swal.fire({
+                    title: "Berhasil Menyimpan Data Telah Tersimpan",
+                    icon: "success",
+                    }).then((result) => {
+                        if (result.isConfirmed){
+                            onSave(data)
+                            nav("/Content")
+                        }
+                    })
+                }
+            })
         } else (
             Swal.fire({
-                title: "Good job!",
-                text: "You clicked the button!",
-                icon: "success"
+                title: "Data Ada Yang Belum Terisi !",
+                text: "Mohon Lengkapi Data !",
+                icon: "warning"
             })
         )
     }
