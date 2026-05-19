@@ -8,6 +8,7 @@ function ContentAdminHook() {
     const navigate = useNavigate();
     const content = useSelector(state => state.content.content)
     const dataedit = useSelector(state => state.content.editContent)
+    const [filefoto, setFilefoto] = useState(null)
 
     useEffect(() => {
         dispatch(GetContent());
@@ -29,8 +30,8 @@ function ContentAdminHook() {
     }
 
     return{
-        content,dataedit,
-        navigate,handlesavecontent,EditData
+        content,dataedit,filefoto,
+        navigate,handlesavecontent,EditData,setFilefoto,setFilefoto
     }
 }
 

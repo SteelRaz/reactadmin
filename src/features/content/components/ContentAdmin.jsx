@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
-function ContentAdmin({nav,onSave}) {
+function ContentAdmin({nav,onSave,setfoto,datafoto}) {
     
     const { register, handleSubmit } = useForm();
 
@@ -9,8 +9,29 @@ function ContentAdmin({nav,onSave}) {
         nav("/Content")
     }
 
+    const handleupload = (e) => {
+        const foto = e.target.files[0]
+        console.log("Data Foto",foto)
+
+        const sizeMB = foto.size / (1024 * 1024);
+        console.log("sizeMB",sizeMB)
+        
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            console.log(reader)
+            const base64Full = reader.result;
+            console.log("base64Full",base64Full)
+            const base64Only = base64Full.split(",")[1];
+            console.log("base64Only",base64Only)
+            setfoto(base64Only)
+            
+        }
+        reader.readAsDataURL(foto)
+    }
+
     const handlesubmitcontent = (data) => {
-        if(data.Content != "" && data.Description != "" && data.FotoContent != ""){
+        console.log("datafoto",datafoto)
+        if(data.Content != "" && data.Description != "" && datafoto != ""){
             Swal.fire({
                 title: "Apakah Anda Yakin Ingin Menyimpan Data ?",
                 showCancelButton: true,
@@ -23,7 +44,12 @@ function ContentAdmin({nav,onSave}) {
                     icon: "success",
                     }).then((result) => {
                         if (result.isConfirmed){
-                            onSave(data)
+                            const confirmdata = {
+                                ...data,
+                                FotoContent: datafoto
+                            }
+                            console.log("Data Dari ConfirmData",confirmdata)
+                            onSave(confirmdata)
                             nav("/Content")
                         }
                     })
@@ -88,7 +114,7 @@ function ContentAdmin({nav,onSave}) {
                         w-64 shrink"
                     />
 
-                    <input
+                    {/* <input
                         {...register("FotoContent")}
                         type="text"
                         placeholder="FotoContent"
@@ -99,10 +125,9 @@ function ContentAdmin({nav,onSave}) {
                         focus:outline-sky-500
                         focus:ring-2 focus:ring-sky-500
                         w-64 shrink"
-                    />
-{/* 
+                    /> */}
+
                     <input
-                        {...register("FotoContent")}
                         type="file"
                         class="
                         file:mr-4
@@ -116,7 +141,8 @@ function ContentAdmin({nav,onSave}) {
                         dark:file:bg-orange-600
                         dark:file:text-violet-100
                         dark:hover:file:bg-blue-600"
-                    /> */}
+                        onChange={handleupload}
+                    />
 
                     <button
                         type="submit"
