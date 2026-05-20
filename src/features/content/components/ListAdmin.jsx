@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 
 
-function ListAdmin({nav, data, edit}) {
+function ListAdmin({nav, data, onEdit, onDelete}) {
 
     console.log("Data content",data)
 
@@ -14,7 +14,11 @@ function ListAdmin({nav, data, edit}) {
     }
 
     const Editnav = (row) => {
-        edit(row)
+        onEdit(row)
+    }
+
+    const DeleteData = (row) => {
+        onDelete(row)
     }
     
       const columns = [
@@ -35,7 +39,7 @@ function ListAdmin({nav, data, edit}) {
                 <GridActionsCellItem
                 icon={<GridDeleteIcon />}
                 label="Delete"
-                onClick={() => deleteUser(params.id)}
+                onClick={() => DeleteData(params.row.Id)}
                 />
             ],
         },

@@ -15,7 +15,7 @@ const contentApi = {
     },
 
     deleteContent(id){
-        return axiosClient.get(`/Content-admin-Delete/${id}`)
+        return axiosClient.delete(`/Content-admin-Delete/${id}`)
     },
 };
 

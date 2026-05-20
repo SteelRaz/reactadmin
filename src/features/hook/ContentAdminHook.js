@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addContents, EditContent, GetContent } from "../../reducer/useThunk";
+import { addContents, DeleteContent, EditContent, GetContent } from "../../reducer/useThunk";
 
 function ContentAdminHook() {
     const dispatch = useDispatch();
@@ -29,9 +29,13 @@ function ContentAdminHook() {
         dispatch(EditContent(row.Id))
     }
 
+    const DeleteData = (id) => {
+        dispatch(DeleteContent(id))
+    }
+
     return{
         content,dataedit,filefoto,
-        navigate,handlesavecontent,EditData,setFilefoto,setFilefoto
+        navigate,handlesavecontent,EditData,setFilefoto,setFilefoto,DeleteData
     }
 }
 

@@ -115,8 +115,8 @@ const contentSlice = createSlice({
         })
         .addCase(DeleteContent.fulfilled, (state, action) => {
             state.status = "success";
-            state.users = state.users.filter(
-                user => user.id !== action.payload
+            state.content = state.content.filter(
+                content => content.id !== action.payload
             );
         })
         .addCase(DeleteContent.rejected, (state, action) => {
