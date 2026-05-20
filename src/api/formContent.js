@@ -13,6 +13,10 @@ const contentApi = {
     editContent(id){
         return axiosClient.get(`/Content-admin-Edit/${id}`)
     },
+
+    deleteContent(id){
+        return axiosClient.get(`/Content-admin-Delete/${id}`)
+    },
 };
 
 export default contentApi;

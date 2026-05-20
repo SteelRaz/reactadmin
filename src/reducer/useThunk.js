@@ -52,6 +52,22 @@ export const EditContent = createAsyncThunk(
     }
 )
 
+export const DeleteContent = createAsyncThunk(
+    "content/DeleteContent",
+    async(id , thunkApi) => {
+        try{
+            await delay(3000);
+            const res = await contentApi.deleteContent(id);
+            return res.data;
+        }catch(err){
+            console.error("todoThunk getTotods error:", err);
+            return thunkApi.rejectWithValue(
+                err.message || err.response?.data || "Failed To Get Content"
+            );
+        }
+    }
+)
+
 // export const editUsers = createAsyncThunk(
 //     "users/editUsers",
 //     async(data, thunkApi) => {

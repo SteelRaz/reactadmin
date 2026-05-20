@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContents, EditContent, GetContent } from './useThunk';
+import { addContents, DeleteContent, EditContent, GetContent } from './useThunk';
 // import { getUsers } from './todoThunk';
 
 const contentSlice = createSlice({
@@ -44,51 +44,51 @@ const contentSlice = createSlice({
 
     extraReducers: builder => {
         builder
-            .addCase(GetContent.pending, state => {
-                state.status = "loading";
-                state.errormessage = null;
-            })
-            .addCase(GetContent.fulfilled, (state, action) => {
-                state.status = "success";
-                state.content = action.payload
-            })
-            .addCase(GetContent.rejected, (state, action) => {
-                state.status = "error";
-                state.errormessage = action.payload
-            })
+        .addCase(GetContent.pending, state => {
+            state.status = "loading";
+            state.errormessage = null;
+        })
+        .addCase(GetContent.fulfilled, (state, action) => {
+            state.status = "success";
+            state.content = action.payload
+        })
+        .addCase(GetContent.rejected, (state, action) => {
+            state.status = "error";
+            state.errormessage = action.payload
+        })
 
 
-            .addCase(addContents.pending, state => {
-                state.status = "loading";
-                state.errormessage = null;
-            })
-            .addCase(addContents.fulfilled, (state, action) => {
-                state.status = "success";
-                // state.users.push({
-                //     id: Date.now(),
-                //     ...action.payload
-                // })
-                // console.log("action",action.payload)
-                state.addContent = action.payload;
-            })
-            .addCase(addContents.rejected, (state, action) => {
-                state.status = "error";
-                state.errormessage = action.payload
-            })
+        .addCase(addContents.pending, state => {
+            state.status = "loading";
+            state.errormessage = null;
+        })
+        .addCase(addContents.fulfilled, (state, action) => {
+            state.status = "success";
+            // state.users.push({
+            //     id: Date.now(),
+            //     ...action.payload
+            // })
+            // console.log("action",action.payload)
+            state.addContent = action.payload;
+        })
+        .addCase(addContents.rejected, (state, action) => {
+            state.status = "error";
+            state.errormessage = action.payload
+        })
 
 
-            .addCase(EditContent.pending, state => {
-                state.status = "loading";
-                state.errormessage = null;
-            })
-            .addCase(EditContent.fulfilled, (state, action) => {
-                state.status = "success";
-                state.editContent = action.payload
-            })
-            .addCase(EditContent.rejected, (state, action) => {
-                state.status = "error";
-                state.errormessage = action.payload
-            })
+        .addCase(EditContent.pending, state => {
+            state.status = "loading";
+            state.errormessage = null;
+        })
+        .addCase(EditContent.fulfilled, (state, action) => {
+            state.status = "success";
+            state.editContent = action.payload
+        })
+        .addCase(EditContent.rejected, (state, action) => {
+            state.status = "error";
+            state.errormessage = action.payload
+        })
 
         // .addCase(editUsers.pending, state => {
         //     state.status = "loading";
@@ -109,20 +109,20 @@ const contentSlice = createSlice({
         //     state.errormessage = action.payload
         // })
 
-        // .addCase(deleteUsers.pending, state => {
-        //     state.status = "loading";
-        //     state.errormessage = null;
-        // })
-        // .addCase(deleteUsers.fulfilled, (state, action) => {
-        //     state.status = "success";
-        //     state.users = state.users.filter(
-        //         user => user.id !== action.payload
-        //     );
-        // })  
-        // .addCase(deleteUsers.rejected, (state, action) => {
-        //     state.status = "error";
-        //     state.errormessage = action.payload
-        // })
+        .addCase(DeleteContent.pending, state => {
+            state.status = "loading";
+            state.errormessage = null;
+        })
+        .addCase(DeleteContent.fulfilled, (state, action) => {
+            state.status = "success";
+            state.users = state.users.filter(
+                user => user.id !== action.payload
+            );
+        })
+        .addCase(DeleteContent.rejected, (state, action) => {
+            state.status = "error";
+            state.errormessage = action.payload
+        })
     }
 
 });
