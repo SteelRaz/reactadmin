@@ -47,22 +47,20 @@ function ListAdmin({nav, data, onEdit, onDelete}) {
 
     return(
         <>
-            <div class="flex justify-end mr-5">
+            <div className="flex justify-end mr-5">
                 <button
                     onClick={() => Addnav()}
-                    class="
-                    dark: bg-orange-600
-                    dark:hover:bg-blue-600
-                    w-30
-                    rounded-lg
-                    text-sm
-                    py-2
-                    text-white"
+                    className="
+                    bg-orange-600 
+                    hover:bg-blue-600 
+                    w-32 
+                    rounded-lg text-sm py-2 
+                    text-white cursor-pointer"
                 >
                     Add
                 </button>
             </div>
-            <div class="mt-5">
+            <div className="mt-5">
                 <Box sx={{ height: 1080, width: '100%' }}>
                     <DataGrid
                         rows={data}

@@ -17,33 +17,31 @@ function ContentEdit({nav,onSave,editData}) {
 
     return(
         <>
-            <div class="ml-5">
+            <div className="ml-5">
                 <button
                     onClick={() => BackContent()}
-                    class="
-                    dark: bg-orange-600
-                    dark:hover:bg-blue-600
-                    w-30
-                    rounded-lg
-                    text-sm
-                    py-2
-                    text-white"
+                    className="
+                    bg-orange-600 
+                    hover:bg-blue-600 
+                    w-32 
+                    rounded-lg text-sm py-2 
+                    text-white cursor-pointer"
                 >
                     Back
                 </button>
         </div>
 
-        <div class="flex justify-center font-medium mr-5 mb-5">
+        <div className="flex justify-center font-medium mr-5 mb-5">
             Input Content
         </div>
         <form onSubmit={handleSubmit(handlesubmitcontent)}>
-            <div class="flex justify-center">
-                <div class="flex flex-col gap-[2vw]">
+            <div className="flex justify-center">
+                <div className="flex flex-col gap-[2vw]">
                     <input
                         {...register("Content")}
                         type="text"
                         placeholder="Name Content"
-                        class="
+                        className="
                         border rounded px-2 py-1
                         focus:outline-none
                         focus:border-sky-500
@@ -56,7 +54,7 @@ function ContentEdit({nav,onSave,editData}) {
                         {...register("Description")}
                         type="text"
                         placeholder="Description"
-                        class="
+                        className="
                         border rounded px-3 py-1
                         focus:outline-none
                         focus:border-sky-500
@@ -69,7 +67,7 @@ function ContentEdit({nav,onSave,editData}) {
                         {...register("FotoContent")}
                         type="text"
                         placeholder="FotoContent"
-                        class="
+                        className="
                         border rounded px-3 py-1
                         focus:outline-none
                         focus:border-sky-500
@@ -81,7 +79,7 @@ function ContentEdit({nav,onSave,editData}) {
                     <input
                         {...register("FotoContent")}
                         type="file"
-                        class="
+                        className="
                         file:mr-4
                         file:rounded-full
                         file:border-0
@@ -97,7 +95,7 @@ function ContentEdit({nav,onSave,editData}) {
 
                     <button
                         type="submit"
-                        class="
+                        className="
                         dark: bg-orange-600
                         dark:hover:bg-blue-600
                         rounded-full

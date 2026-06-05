@@ -66,38 +66,37 @@ function ContentAdmin({nav,onSave,setfoto,datafoto}) {
 
     return(
         <>
-            <div class="ml-5">
+            <div className="ml-5">
                 <button
                     onClick={() => BackContent()}
-                    class="
-                    dark: bg-orange-600
-                    dark:hover:bg-blue-600
-                    w-30
-                    rounded-lg
-                    text-sm
-                    py-2
-                    text-white"
+                    className="
+                    bg-orange-600 
+                    hover:bg-blue-600 
+                    w-32 
+                    rounded-lg text-sm py-2 
+                    text-white cursor-pointer"
                 >
                     Back
                 </button>
         </div>
 
-        <div class="flex justify-center font-medium mr-5 mb-5">
+        <div className="flex justify-center font-medium mr-5 mb-5">
             Input Content
         </div>
         <form onSubmit={handleSubmit(handlesubmitcontent)}>
-            <div class="flex justify-center">
-                <div class="flex flex-col gap-[2vw]">
+            <div className="flex justify-center">
+                <div className="flex flex-col gap-[2vw]">
                     <input
                         {...register("Content")}
                         type="text"
                         placeholder="Name Content"
-                        class="
+                        className="
                         border rounded px-2 py-1
                         focus:outline-none
                         focus:border-sky-500
                         focus:outline-sky-500
-                        focus:ring-2 focus:ring-sky-500
+                        focus:ring-2 
+                        focus:ring-sky-500
                         w-64 shrink"
                     />
 
@@ -105,7 +104,7 @@ function ContentAdmin({nav,onSave,setfoto,datafoto}) {
                         {...register("Description")}
                         type="text"
                         placeholder="Description"
-                        class="
+                        className="
                         border rounded px-3 py-1
                         focus:outline-none
                         focus:border-sky-500
@@ -118,7 +117,7 @@ function ContentAdmin({nav,onSave,setfoto,datafoto}) {
                         {...register("FotoContent")}
                         type="text"
                         placeholder="FotoContent"
-                        class="
+                        className="
                         border rounded px-3 py-1
                         focus:outline-none
                         focus:border-sky-500
@@ -129,33 +128,33 @@ function ContentAdmin({nav,onSave,setfoto,datafoto}) {
 
                     <input
                         type="file"
-                        class="
-                        file:mr-4
-                        file:rounded-full
-                        file:border-0
-                        file:bg-orange-100
+                        className="
+                        w-64 
+                        text-sm 
+                        text-gray-500 
+                        file:mr-4 
+                        file:py-2 
                         file:px-4 
-                        file:py-2
-                        file:text-sm
-                        file:font-semibold
-                        dark:file:bg-orange-600
-                        dark:file:text-violet-100
-                        dark:hover:file:bg-blue-600"
+                        file:rounded-lg 
+                        file:border-0 
+                        file:text-sm 
+                        file:font-semibold 
+                        file:bg-orange-600 
+                        file:text-white 
+                        file:cursor-pointer 
+                        hover:file:bg-blue-600 
+                        file:transition-colors"
                         onChange={handleupload}
                     />
 
                     <button
                         type="submit"
-                        class="
-                        dark: bg-orange-600
-                        dark:hover:bg-blue-600
-                        rounded-full
-                        w-42
-                        ml-10
-                        text-sm
-                        px-4
-                        py-2
-                        text-white"
+                        className="
+                        bg-orange-600 
+                        hover:bg-blue-600 
+                        w-32 
+                        rounded-lg text-sm py-2 
+                        text-white cursor-pointer"
                     >
                         Save
                     </button>
