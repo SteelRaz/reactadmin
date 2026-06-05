@@ -1,56 +1,37 @@
-import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
-import ArticleIcon from "@mui/icons-material/Article";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Home, FileText } from "lucide-react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar"
 
-function MenuContentAdmin() {
-  const [open, setOpen] = useState(false);
+const AdminMenuItem = [
+  { text: "Home", path: "/", icon: Home },
+  { text: "Content", path: "/Content", icon: FileText },
+];
 
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
-
-  const AdminMenuItem = [
-    { text: "Home", path: "/", icon: <HomeIcon /> },
-    { text: "Content", path: "/Content", icon: <ArticleIcon /> },
-  ];
-
-
-  const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-      <Box sx={{p : 2}}>
-          <Typography variant="h6"> admin panel</Typography>
-      </Box>
-      <Divider/>
-
-      <List>
-        {AdminMenuItem.map((item, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton component={Link} to={item.path}>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
+export function MenuContentAdmin() {
   return (
-    <div>
-      <IconButton onClick={toggleDrawer(true)}>
-        <MenuIcon />
-      </IconButton>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
-        {DrawerList}
-      </Drawer>
-    </div>
-  );
+    <Sidebar>
+      <SidebarContent>
+        <SidebarMenu>
+          {AdminMenuItem.map((item) => (
+            <SidebarMenuItem key={item.text}>
+              <SidebarMenuButton asChild>
+                <Link to={item.path}>
+                  <item.icon />
+                  <span>{item.text}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarContent>
+    </Sidebar>
+  )
 }
 
 export default MenuContentAdmin;
