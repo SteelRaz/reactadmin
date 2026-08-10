@@ -15,7 +15,7 @@ const AdminMenuItem = [
 
 export function MenuContentAdmin() {
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarMenu>
           {AdminMenuItem.map((item) => (

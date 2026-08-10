@@ -3,6 +3,7 @@ import { DataGrid, GridActionsCell, GridActionsCellItem, GridDeleteIcon, GridEdi
 import { createContext, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
+import Swal from 'sweetalert2';
 
 
 function ListAdmin({nav, data, onEdit, onDelete}) {
@@ -18,7 +19,25 @@ function ListAdmin({nav, data, onEdit, onDelete}) {
     }
 
     const DeleteData = (row) => {
-        onDelete(row)
+        Swal.fire({
+            title: "Apakah Anda Yakin Ingin Melakukan Delete Data ?",
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+            icon: "warning"
+        }).then((result)=> {
+            if (result.isConfirmed){
+                Swal.fire({
+                title: "Berhasil Melakukan Delete Data !",
+                icon: "success",
+                }).then((result) => {
+                    if (result.isConfirmed){
+                    console.log("Delete Data")
+                        onDelete(row)
+                    }
+                })
+            }
+        })
+        
     }
     
       const columns = [

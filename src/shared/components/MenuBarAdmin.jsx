@@ -1,6 +1,5 @@
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import MenuContentAdmin from "./menuContentAdmin";
-import { Sidebar } from "lucide-react";
 
  
 function MenuBarAdmin({ children }) {
