@@ -13,9 +13,25 @@ function ContentAdmin({nav,onSave,setfoto,datafoto}) {
         const foto = e.target.files[0]
         console.log("Data Foto",foto)
 
+        if (!foto) {
+            setfoto(null)
+            return
+        }
+
         const sizeMB = foto.size / (1024 * 1024);
         console.log("sizeMB",sizeMB)
-        
+
+        if (sizeMB > 2) {
+            Swal.fire({
+                title: "Ukuran Foto Terlalu Besar !",
+                text: "Maksimal 2 MB !",
+                icon: "warning"
+            })
+            e.target.value = ""
+            setfoto(null)
+            return
+        }
+
         const reader = new FileReader();
         reader.onloadend = () => {
             console.log(reader)
@@ -24,44 +40,52 @@ function ContentAdmin({nav,onSave,setfoto,datafoto}) {
             const base64Only = base64Full.split(",")[1];
             console.log("base64Only",base64Only)
             setfoto(base64Only)
-            
+
         }
         reader.readAsDataURL(foto)
     }
 
     const handlesubmitcontent = (data) => {
+        console.log("Data Param",data)
         console.log("datafoto",datafoto)
-        if(data.Content != "" && data.Description != "" && datafoto != ""){
-            Swal.fire({
-                title: "Apakah Anda Yakin Ingin Menyimpan Data ?",
-                showCancelButton: true,
-                confirmButtonText: "Save",
-                icon: "question"
-            }).then((result)=> {
-                if (result.isConfirmed){
-                    Swal.fire({
-                    title: "Berhasil Menyimpan Data Telah Tersimpan",
-                    icon: "success",
-                    }).then((result) => {
-                        if (result.isConfirmed){
-                            const confirmdata = {
-                                ...data,
-                                FotoContent: datafoto
-                            }
-                            console.log("Data Dari ConfirmData",confirmdata)
-                            onSave(confirmdata)
-                            nav("/Content")
-                        }
-                    })
-                }
-            })
-        } else (
+
+        const kurang = []
+        if (!data.Content) kurang.push("Name Content")
+        if (!data.Description) kurang.push("Description")
+        if (!datafoto) kurang.push("Foto")
+
+        if (kurang.length) {
             Swal.fire({
                 title: "Data Ada Yang Belum Terisi !",
-                text: "Mohon Lengkapi Data !",
+                text: `Mohon lengkapi: ${kurang.join(", ")}`,
                 icon: "warning"
             })
-        )
+            return
+        }
+
+        Swal.fire({
+            title: "Apakah Anda Yakin Ingin Menyimpan Data ?",
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            icon: "question"
+        }).then((result)=> {
+            if (result.isConfirmed){
+                Swal.fire({
+                    title: "Berhasil Menyimpan Data Telah Tersimpan",
+                    icon: "success",
+                }).then((result) => {
+                    if (result.isConfirmed){
+                        const confirmdata = {
+                            ...data,
+                            FotoContent: datafoto
+                        }
+                        console.log("Data Dari ConfirmData",confirmdata)
+                        onSave(confirmdata)
+                        nav("/Content")
+                    }
+                })
+            }
+        })
     }
 
     return(
@@ -128,6 +152,7 @@ function ContentAdmin({nav,onSave,setfoto,datafoto}) {
 
                     <input
                         type="file"
+                        accept="image/*"
                         className="
                         w-64 
                         text-sm 
