@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import contentApi from "../api/formContent";
+import contentApi from "../../api/formContent";
 
    
 const delay = (ms) => new Promise(res => setTimeout(res,ms));
