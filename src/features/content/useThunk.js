@@ -67,36 +67,3 @@ export const DeleteContent = createAsyncThunk(
         }
     }
 )
-
-// export const editUsers = createAsyncThunk(
-//     "users/editUsers",
-//     async(data, thunkApi) => {
-//         try{
-//             await delay(3000)
-//             const res = await usersApi.editUsers(data)
-//             return res.data
-//         } catch(err){
-//             console.log("todoThunk Error Edit error:",err)
-//             return thunkApi.rejectWithValue(
-//                 err.message || err.response?.data || "Get Users Failed"
-//             );
-//         }
-//     }
-// )
-
-// export const deleteUsers = createAsyncThunk(
-//     "users/deleteUsers",
-//     async(id , thunkApi) => {
-//         try{
-//             await delay(3000);
-//             const res = await usersApi.deleteUsers( id );
-//             thunkApi.dispatch(getUsers())
-//             return res.data;
-//         }catch(err){
-//             console.error("todoThunk getTotods error:", err);
-//             return thunkApi.rejectWithValue(
-//                 err.message || err.response?.data || "Get Users Failed"
-//             );
-//         }
-//     }
-// )
