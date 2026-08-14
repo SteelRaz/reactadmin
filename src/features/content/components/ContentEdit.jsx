@@ -112,7 +112,6 @@ function ContentEdit({nav,onSave,editData}) {
 
             </div>
         </form>
-
         </>
     )
 }
