@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addContents, DeleteContent, EditContent, GetContent } from "../../reducer/useThunk";
+import { addContents, DeleteContent, EditContent, GetContent } from "../useThunk";
 
 function ContentAdminHook() {
     const dispatch = useDispatch();

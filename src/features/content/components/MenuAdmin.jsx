@@ -1,4 +1,4 @@
-import ContentAdminHook from "../../hook/ContentAdminHook";
+import ContentAdminHook from "../hook/ContentAdminHook";
 import ListAdmin from "./ListAdmin";
 
 function MenuAdmin(){
